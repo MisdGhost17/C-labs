@@ -23,7 +23,13 @@ int main(){
     для которой максимальный размер - размер массива input(300),
     stdin - ввод с клавиатуры
     */
-    input[strcspn(input, "\n")] = '\0'; //убираем символ новой строки
+    input[strcspn(input, "\n")] = '\0';//убираем символ новой строки
+    for (int i = 0; i < strlen(input); i++) {
+        if ((isalpha(input[i]) || isdigit(input[i]) || !ispunct(input[i]) || input[i] == '.') == 0){
+            printf("Строка должна содержать только латинские буквы и цифры!");
+            return 0;
+        }
+    }
     if (input[strlen(input)-1] == '.'){ //проверка точка ли последний символ
         //вывод первоначальной строки
         printf("Изначальная строка: %s\n", input);
@@ -47,7 +53,6 @@ void transform_string(const char *input) {
     strcpy(str, input); //копируем input в массив str
     str[strcspn(str, ".")] = '\0'; /*заменяем точку на конец строки (strcspn указывает на первое
     вхождение искомого символа (точки)) */
-
     // Разделяем строку на слова
     char *token = strtok(str, " "); /*создаем строку token (strtok выделяет все содержимое
     строки до первого пробелам*/
@@ -56,16 +61,19 @@ void transform_string(const char *input) {
         word_count++; //счетчик кол-ва слов в строке
         token = strtok(NULL, " "); //выделяем следующую часть строки
     }
-    int len_lastword = strlen(words[word_count-1]); //получаем длину последнего слова
-    char lastchr = words[word_count-1][len_lastword-1]; //получаем последний символ
-
+    words[word_count][0]="\0";
     //убираем все вхождения последней буквы
     for (int i = 0; i < word_count; i++) { //проходимся по всем словам
-        for (int j = 0; j < strlen(words[i]); j++) { //проходимся по всем буквам в слове
-            if (words[i][j] == lastchr) { /*если наш символ равен последнему
-                находим его позицию и сдвигаем всю часть слова вместо него*/
-                for (int k = j; k < strlen(words[i]); k++) {
-                    if (words[i][k] != '\0') {
+        char lastchr = words[i][strlen(words[i])-1]; //последний символ как char
+        char lastcharstr[2] = {lastchr, '\0'};//последний символ как строка (нужно для strcspn)
+        //strcsp возвращает значение больше длины строки, если заданного символа в ней нет
+        /*пока значение strcspn <= длине слова - последняя буква - '\0',
+         значит последний символ есть в строке, следовательно продолжаем*/
+        while (strcspn(words[i],lastcharstr) <= strlen(words[i])-2){
+            for (int j = 0; j < strlen(words[i])-1; j++) { //проходимся по всем символам в слове кроме последнего
+                if (words[i][j] == lastchr) { /*если наш символ равен последнему
+                    находим его позицию и сдвигаем всю часть слова вместо него*/
+                    for (int k = j; k < strlen(words[i]); k++) {
                         words[i][k] = words[i][k+1];
                     }
                 }
@@ -83,3 +91,4 @@ void transform_string(const char *input) {
     //печатаем последнее слово
     printf("%s.\n", lastword);
 }
+

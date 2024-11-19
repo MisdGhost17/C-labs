@@ -11,7 +11,11 @@ double calculate_with_max_n(int n, double x);
 //Проверка валидно ли double float число(не целое число, значение с плавающей точкой)
 bool isValidDoubleNumber(double num);
 
-int main() {
+int is_integer(double num) {
+    return floor(num) == num;
+}
+
+int main(){
     // меняем кодировку, чтобы отображался русский язык в консоли
     SetConsoleOutputCP(CP_UTF8);
     //создание переменной
@@ -23,7 +27,7 @@ int main() {
     scanf("%lf", &x);
     if (!isValidDoubleNumber(x) || x <= -1 || x >= 1 ) {
         printf("Некорректный ввод для x. |x| < 1\n");
-        return 1;
+        return 0;
     }
 
     //получаем выбор
@@ -54,7 +58,7 @@ int main() {
             //получаем максимальное количество членов ряда
             printf("Введите максимальное число членов ряда:\n");
             scanf("%d", &max_n); //получаем max_n и проверяем её на валидность
-            if (max_n <= 1 || max_n % 1 == 0) {
+            if (max_n <= 1) {
                 printf("Некоректный ввод для количесво членов ряда. n > 1");
                 return 1;
             }
