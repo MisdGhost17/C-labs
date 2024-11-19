@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include <windows.h>
+#include <stdint.h>
 
 // Определение функций для счета 1 и 2
 double calculate_with_epsilon(double epsilon, double x);
@@ -53,19 +54,18 @@ int main() {
             //получаем максимальное количество членов ряда
             printf("Введите максимальное число членов ряда:\n");
             scanf("%d", &max_n); //получаем max_n и проверяем её на валидность
-            if (max_n <= 1 || !isValidDoubleNumber(max_n)) {
+            if (max_n <= 1 || max_n % 1 == 0) {
                 printf("Некоректный ввод для количесво членов ряда. n > 1");
                 return 1;
             }
             //получаем результат после вызова функции и выводим его
             double res2 = calculate_with_max_n(max_n, x);
             printf("arcsin(%lf)=%lf c %d членами ряда", x, res2, max_n);
-            break;
+            return 1;
         default:
             printf("Неверный выбор (1 или 2).");
-            return 1;
+            return 0;
     }
-    return 0;
 }
 //определение функции calculate_with_epsilon, которая возвращает число с плавающей точкой
 double calculate_with_epsilon(double epsilon, double x) { //для функции нужна точность(эпсилон) и x
@@ -98,6 +98,6 @@ double calculate_with_max_n(int max_n, double x) {
 }
 //определние функции isValidDoubleNumber, которая возвращает булевое значение
 bool isValidDoubleNumber(double num) {
-    // !isnan - не если число и isfinite - конечное число с плавающей точкой
+    // !isnan - если число и isfinite - конечное число с плавающей точкой
     return !isnan(num) && isfinite(num);
 }
