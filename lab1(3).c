@@ -1,3 +1,4 @@
+#include <iso646.h>
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
@@ -34,10 +35,7 @@ int main(){
     printf("1. С точностью\n");
     printf("2. Для заданного количества членов ряда\n");
     printf("Выбор:\n");
-    if (scanf("%d", &choice)!= 1 || 2) {
-        printf("Неверный выбор (1 или 2).");
-        return -1;
-    }
+    scanf("%d", &choice);
 
     switch (choice)
     {
@@ -46,7 +44,7 @@ int main(){
             double e; //переменная для точности
             printf("Введите точность:\n");
             scanf("%lf", &e); //получаем точность и проверяем её на валидность
-            if (e <= 0 || !isValidDoubleNumber(e)) {
+            if (e <= 0 ||!is_integer(e) ||!isValidDoubleNumber(e)) {
                 printf("Неверный ввод точности.");
                 return 1;
             }
@@ -60,7 +58,7 @@ int main(){
             //получаем максимальное количество членов ряда
             printf("Введите максимальное число членов ряда:\n");
             scanf("%d", &max_n); //получаем max_n и проверяем её на валидность
-            if (max_n <= 1) {
+            if (max_n <= 1 || !isdigit(max_n)) {
                 printf("Некоректный ввод для количесво членов ряда. n > 1");
                 return 1;
             }
