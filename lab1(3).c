@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
-#include <windows.h>
-#include <stdint.h>
+#include <windows.h>В
 
 // Определение функций для счета 1 и 2
 double calculate_with_epsilon(double epsilon, double x);
@@ -35,7 +34,10 @@ int main(){
     printf("1. С точностью\n");
     printf("2. Для заданного количества членов ряда\n");
     printf("Выбор:\n");
-    scanf("%d", &choice);
+    if (scanf("%d", &choice)!= 1 || 2) {
+        printf("Неверный выбор (1 или 2).");
+        return -1;
+    }
 
     switch (choice)
     {
