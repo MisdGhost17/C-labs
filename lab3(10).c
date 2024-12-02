@@ -3,6 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
+# include <stdint.h>
 
 #define INPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f.txt"
 #define OUTPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f1.txt"
@@ -18,7 +19,7 @@ void generate_random_floats(int count){
         printf("Ошибка открытия файла");
         exit(-1);
     }
-    srand(time(NULL));
+    srand(time(NULL)); //Инициализатор рандомных чисел
     for (int i = 0; i < count; i++) {
         float random_number = (float)rand() / RAND_MAX*200 - 100.0; // Генерация числа от -100 до 100
         fprintf(file, "%lf\n", random_number); // Запись числа в файл
@@ -79,8 +80,11 @@ int main() {
     double minValue, firstMaxValue;
     SetConsoleOutputCP(CP_UTF8);
     int count;
-    printf("Введите количество цифр в файле f.txt:\n");
-    scanf("%d", &count);
+    printf("Введите желаемое количество цифр в файле f.txt:\n");
+    if (scanf("%d", &count)!=1 || count < 2||(int64_t)count) {
+        printf("Введите целое число >= 2.");
+        return -1;
+    }
     generate_random_floats(count);
     // Находим минимальное и первое максимальное значения
     find_min_and_max(INPUT_FILENAME, &minValue, &firstMaxValue);
