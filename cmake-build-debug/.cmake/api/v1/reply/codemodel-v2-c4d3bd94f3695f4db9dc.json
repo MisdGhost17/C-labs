@@ -16,7 +16,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
@@ -32,7 +34,9 @@
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
@@ -40,9 +44,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "lab1_3_::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-lab1_3_-Debug-82e60526c5768df688f2.json",
-					"name" : "lab1_3_",
+					"id" : "lab1_3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lab1_3-Debug-2baaabd334bfebfef3eb.json",
+					"name" : "lab1_3",
 					"projectIndex" : 0
 				},
 				{
@@ -50,6 +54,20 @@
 					"id" : "lab2::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-lab2-Debug-aab77f48998911424523.json",
 					"name" : "lab2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lab3_10::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lab3_10-Debug-16e8feb4b684d641fc26.json",
+					"name" : "lab3_10",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-Debug-457b8a1c2cedaa7eb8c0.json",
+					"name" : "test",
 					"projectIndex" : 0
 				}
 			]

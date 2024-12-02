@@ -14,7 +14,6 @@
 void transform_string(const char *input);
 
 int main(){
-
     char input[301]; //массив для строки
     SetConsoleOutputCP(CP_UTF8);
 
@@ -27,9 +26,36 @@ int main(){
     for (int i = 0; i < strlen(input); i++) {
         if ((isalpha(input[i]) || isdigit(input[i]) || !ispunct(input[i]) || input[i] == '.') == 0){
             printf("Строка должна содержать только латинские буквы и цифры!");
-            return 0;
+            return -1;
         }
     }
+    //проверяем сколько точек в строке
+    int count_dot = 0;
+    for (int i = 0; i < strlen(input); i++) {
+        if (input[i] == '.') {
+            count_dot += 1;
+        }
+    }
+    if (count_dot > 1) {
+        printf("Строка должна содержать только одну точку!");
+        return -1;
+    }
+    char teststr[400];
+    int word_count = 0;
+    char words[30][11];
+    strcpy(teststr, input);
+    char *token = strtok(teststr, " "); /*создаем строку token (strtok выделяет все содержимое
+    строки до первого пробелам*/
+    while (token != NULL && word_count < 30) {//пока выделяемая строка не пустая продолжаем цикл
+        if (strlen(token) > 11) {
+            printf("Слово должно содержать не больше 10 символов.");
+            return -1;
+        }
+        strcpy(words[word_count], token); //копируем token в массив наших слов
+        word_count++; //счетчик кол-ва слов в строке
+        token = strtok(NULL, " "); //выделяем следующую часть строки
+    }
+
     if (input[strlen(input)-1] == '.'){ //проверка точка ли последний символ
         //вывод первоначальной строки
         printf("Изначальная строка: %s\n", input);
@@ -49,19 +75,19 @@ void transform_string(const char *input) {
     int word_count = 0; //переменная для количества слов
 
     // Копируем строку, заменяя точку на \0(символ означающий конец строки)
-    char str[301]; // создаем массив из 300 элементов так как 30 слов * 10 букв в каждом
+    char str[400]; // создаем массив из 400 элементов так как 30 слов * 10 букв в каждом + произвольное количество пробелов между ними
     strcpy(str, input); //копируем input в массив str
     str[strcspn(str, ".")] = '\0'; /*заменяем точку на конец строки (strcspn указывает на первое
     вхождение искомого символа (точки)) */
     // Разделяем строку на слова
     char *token = strtok(str, " "); /*создаем строку token (strtok выделяет все содержимое
     строки до первого пробелам*/
-    while (token != NULL && word_count < 30) { //пока выделяемая строка не пустая продолжаем цикл
+    while (token != NULL && word_count < 30) {//пока выделяемая строка не пустая продолжаем цикл
         strcpy(words[word_count], token); //копируем token в массив наших слов
         word_count++; //счетчик кол-ва слов в строке
         token = strtok(NULL, " "); //выделяем следующую часть строки
     }
-    words[word_count][0]="\0";
+    words[word_count][0]= '\0';
     //убираем все вхождения последней буквы
     for (int i = 0; i < word_count; i++) { //проходимся по всем словам
         char lastchr = words[i][strlen(words[i])-1]; //последний символ как char

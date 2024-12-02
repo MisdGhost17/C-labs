@@ -41,37 +41,37 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/Misd/CLionProjects/labs_C/cmake-build-debug/
 # =============================================================================
-# Object build statements for EXECUTABLE target lab1_3_
+# Object build statements for EXECUTABLE target lab1_3
 
 
 #############################################
-# Order-only phony target for lab1_3_
+# Order-only phony target for lab1_3
 
-build cmake_object_order_depends_target_lab1_3_: phony || .
+build cmake_object_order_depends_target_lab1_3: phony || .
 
-build CMakeFiles/lab1_3_.dir/lab1(3).c.obj: C_COMPILER__lab1_3__unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/lab1(3).c || cmake_object_order_depends_target_lab1_3_
-  DEP_FILE = CMakeFiles\lab1_3_.dir\lab1(3).c.obj.d
+build CMakeFiles/lab1_3.dir/lab1(3).c.obj: C_COMPILER__lab1_3_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/lab1(3).c || cmake_object_order_depends_target_lab1_3
+  DEP_FILE = CMakeFiles\lab1_3.dir\lab1(3).c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\lab1_3_.dir
-  OBJECT_FILE_DIR = CMakeFiles\lab1_3_.dir
+  OBJECT_DIR = CMakeFiles\lab1_3.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab1_3.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target lab1_3_
+# Link build statements for EXECUTABLE target lab1_3
 
 
 #############################################
-# Link the executable lab1_3_.exe
+# Link the executable lab1_3.exe
 
-build lab1_3_.exe: C_EXECUTABLE_LINKER__lab1_3__Debug CMakeFiles/lab1_3_.dir/lab1(3).c.obj
+build lab1_3.exe: C_EXECUTABLE_LINKER__lab1_3_Debug CMakeFiles/lab1_3.dir/lab1(3).c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\lab1_3_.dir
+  OBJECT_DIR = CMakeFiles\lab1_3.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = lab1_3_.exe
-  TARGET_IMPLIB = liblab1_3_.dll.a
-  TARGET_PDB = lab1_3_.exe.dbg
+  TARGET_FILE = lab1_3.exe
+  TARGET_IMPLIB = liblab1_3.dll.a
+  TARGET_PDB = lab1_3.exe.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target lab2
@@ -106,6 +106,72 @@ build lab2.exe: C_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/lab2(7).c.ob
   TARGET_IMPLIB = liblab2.dll.a
   TARGET_PDB = lab2.exe.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target test
+
+
+#############################################
+# Order-only phony target for test
+
+build cmake_object_order_depends_target_test: phony || .
+
+build CMakeFiles/test.dir/test.c.obj: C_COMPILER__test_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/test.c || cmake_object_order_depends_target_test
+  DEP_FILE = CMakeFiles\test.dir\test.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_FILE_DIR = CMakeFiles\test.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target test
+
+
+#############################################
+# Link the executable test.exe
+
+build test.exe: C_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/test.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\test.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = test.exe
+  TARGET_IMPLIB = libtest.dll.a
+  TARGET_PDB = test.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target lab3_10
+
+
+#############################################
+# Order-only phony target for lab3_10
+
+build cmake_object_order_depends_target_lab3_10: phony || .
+
+build CMakeFiles/lab3_10.dir/lab3(10).c.obj: C_COMPILER__lab3_10_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/lab3(10).c || cmake_object_order_depends_target_lab3_10
+  DEP_FILE = CMakeFiles\lab3_10.dir\lab3(10).c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\lab3_10.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab3_10.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target lab3_10
+
+
+#############################################
+# Link the executable lab3_10.exe
+
+build lab3_10.exe: C_EXECUTABLE_LINKER__lab3_10_Debug CMakeFiles/lab3_10.dir/lab3(10).c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\lab3_10.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = lab3_10.exe
+  TARGET_IMPLIB = liblab3_10.dll.a
+  TARGET_PDB = lab3_10.exe.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -132,9 +198,13 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
-build lab1_3_: phony lab1_3_.exe
+build lab1_3: phony lab1_3.exe
 
 build lab2: phony lab2.exe
+
+build lab3_10: phony lab3_10.exe
+
+build test: phony test.exe
 
 # =============================================================================
 # Folder targets.
@@ -144,7 +214,7 @@ build lab2: phony lab2.exe
 #############################################
 # Folder: C:/Users/Misd/CLionProjects/labs_C/cmake-build-debug
 
-build all: phony lab1_3_.exe lab2.exe
+build all: phony lab1_3.exe lab2.exe test.exe lab3_10.exe
 
 # =============================================================================
 # Built-in targets
