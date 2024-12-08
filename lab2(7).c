@@ -17,7 +17,7 @@ int main(){
     char input[301]; //массив для строки
     SetConsoleOutputCP(CP_UTF8);
 
-    printf("Введите строку (до 30 слов, каждое до 10 символов):\n");
+    printf("Введите строку (до 30 слов, каждое до 10 символов), строка должна заканчиваться точкой:\n");
     fgets(input, sizeof(input), stdin); /*записываем строку input,
     для которой максимальный размер - размер массива input(300),
     stdin - ввод с клавиатуры
@@ -43,7 +43,6 @@ int main(){
     char teststr[400];
     int word_count = 0;
     char words[30][11];
-    strcpy(teststr, input);
     char *token = strtok(teststr, " "); /*создаем строку token (strtok выделяет все содержимое
     строки до первого пробелам*/
     while (token != NULL && word_count < 30) {//пока выделяемая строка не пустая продолжаем цикл
@@ -74,14 +73,13 @@ void transform_string(const char *input) {
     char words[30][11]; //двусвязный массив для слов (30 слов по 10 + \0 = 11 символов)
     int word_count = 0; //переменная для количества слов
 
-    // Копируем строку, заменяя точку на \0(символ означающий конец строки)
     char str[400]; // создаем массив из 400 элементов так как 30 слов * 10 букв в каждом + произвольное количество пробелов между ними
     strcpy(str, input); //копируем input в массив str
     str[strcspn(str, ".")] = '\0'; /*заменяем точку на конец строки (strcspn указывает на первое
     вхождение искомого символа (точки)) */
     // Разделяем строку на слова
     char *token = strtok(str, " "); /*создаем строку token (strtok выделяет все содержимое
-    строки до первого пробелам*/
+    строки до первого пробела*/
     while (token != NULL && word_count < 30) {//пока выделяемая строка не пустая продолжаем цикл
         strcpy(words[word_count], token); //копируем token в массив наших слов
         word_count++; //счетчик кол-ва слов в строке
@@ -89,21 +87,33 @@ void transform_string(const char *input) {
     }
     words[word_count][0]= '\0';
     //убираем все вхождения последней буквы
-    for (int i = 0; i < word_count; i++) { //проходимся по всем словам
+    for (int i = 0; i < word_count; i++) {
+        //проходимся по всем словам
         char lastchr = words[i][strlen(words[i])-1]; //последний символ как char
         char lastcharstr[2] = {lastchr, '\0'};//последний символ как строка (нужно для strcspn)
         //strcsp возвращает значение больше длины строки, если заданного символа в ней нет
         /*пока значение strcspn <= длине слова - последняя буква - '\0',
          значит последний символ есть в строке, следовательно продолжаем*/
-        while (strcspn(words[i],lastcharstr) <= strlen(words[i])-2){
-            for (int j = 0; j < strlen(words[i])-1; j++) { //проходимся по всем символам в слове кроме последнего
-                if (words[i][j] == lastchr) { /*если наш символ равен последнему
-                    находим его позицию и сдвигаем всю часть слова вместо него*/
-                    for (int k = j; k < strlen(words[i]); k++) {
-                        words[i][k] = words[i][k+1];
+        int allsymbolsame = 1;
+        for (int s=0; s < strlen(words[i])-1; s++) {
+            if (words[i][s] != lastchr) {
+                allsymbolsame = 0;
+            }
+        }
+        if (allsymbolsame == 0) {
+            while (strcspn(words[i],lastcharstr) <= strlen(words[i])-2){
+                for (int j = 0; j < strlen(words[i])-1; j++) { //проходимся по всем символам в слове кроме последнего
+                    if (words[i][j] == lastchr && words[i][j+1] != '\0') { /*если наш символ равен последнему
+                        находим его позицию и сдвигаем всю часть слова вместо него*/
+                        for (int k = j; k < strlen(words[i]); k++) {
+                            words[i][k] = words[i][k+1];
+                        }
                     }
                 }
             }
+        }
+        if (allsymbolsame == 1){
+            strcpy(words[i], lastcharstr);
         }
     }
     char lastword[11]; //массив для последнего слова

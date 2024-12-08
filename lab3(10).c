@@ -3,7 +3,7 @@
 #include <string.h>
 #include <time.h>
 #include <windows.h>
-# include <stdint.h>
+#include <stdint.h>
 
 #define INPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f.txt"
 #define OUTPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f1.txt"
