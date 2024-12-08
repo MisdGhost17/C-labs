@@ -1,98 +1,149 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <float.h>
 #include <time.h>
 #include <windows.h>
-#include <stdint.h>
 
-#define INPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f.txt"
-#define OUTPUT_FILENAME "C:/Users/Misd/CLionProjects/labs_C/files_for_lab3/f1.txt"
-//Вариант 26
-/* Дан файл f, компоненты которого являются действительными числами. Найти:
-Наименьшее из значений компонент файла. Записать это значение перед первым
-наибольшим значением файла.*/
+#define FILENAME "C:/Users/Misd/CLionProjects/labs_C/f.txt"
 
-//Формирование файла f.txt с рандомными действительными числами
-void generate_random_floats(int count){
-    FILE *file = fopen(INPUT_FILENAME, "w");
+//функция для формирования файла с случайными числами
+void random_nums_file(int count) {
+    srand((unsigned int)time(NULL)); //инициализация генератора случайных чисел
+    FILE *file = fopen(FILENAME, "w");
     if (file == NULL) {
-        printf("Ошибка открытия файла");
+        printf("Ошибка открытия файла для записи");
         exit(-1);
     }
-    srand(time(NULL)); //Инициализатор рандомных чисел
+
     for (int i = 0; i < count; i++) {
-        float random_number = (float)rand() / RAND_MAX*200 - 100.0; // Генерация числа от -100 до 100
-        fprintf(file, "%lf\n", random_number); // Запись числа в файл
+        float number = ((float)rand() / RAND_MAX) * 200 - 100; //генерация числа от -100 до 100
+        fprintf(file, "%.2f\n", number);
     }
 
     fclose(file);
 }
 
-// Функция для нахождения минимального и максимального значения
-void find_min_and_max(const char *filename, double *min, double *max) {
-    FILE *file = fopen(filename, "r");
-    if (file == NULL) { //если не получилось получить файл вызываем ошибку
-        printf("Ошибка при открытии файла для чтения.\n");
-        return;
-    }
-
-    double number;
-    *min = 1000000000000000;
-    *max = -10000000000000000;
-
-    while (fscanf(file, "%lf", &number)==1) {
-        if (number < *min) {
-            *min = number;
-        }
-        if (number > *max) {
-            *max = number;
-        }
-    }
-    fclose(file);
-}
-
-// Функция для записи результата в выходной файл
-void writeOutputFile(const char *inputFilename, const char *outputFilename, double min, double firstMax) {
-    FILE *inputFile = fopen(inputFilename, "r");
-    FILE *outputFile = fopen(outputFilename, "w");
-
-    if (inputFile == NULL || outputFile == NULL) {
-        printf("Ошибка при открытии файлов.\n");
+//функция для формирования файла с вводом чисел пользователем
+void user_nums_file(int count) {
+    FILE *file = fopen(FILENAME, "w");
+    if (file == NULL) {
+        printf("Ошибка открытия файла для записи");
         exit(-1);
     }
 
-    double number;
-    int firstMaxWritten = 0;
-
-    while (fscanf(inputFile, "%lf", &number) == 1) {
-        if (number == firstMax && !firstMaxWritten) {
-            fprintf(outputFile, "%lf\n", min); // Записываем минимальное значение перед первым максимальным
-            firstMaxWritten = 1; // Устанавливаем флаг, чтобы не записывать повторно
+    printf("Введите %d действительных чисел:\n", count);
+    for (int i = 0; i < count; i++) {
+        float number;
+        while (1) {
+            printf("%d: ", i + 1);
+            if (scanf("%f", &number) == 1) {
+                fprintf(file, "%.2f\n", number);
+                break; //выход из цикла при корректном вводе
+            }
+            else {
+                printf( "Введено некорректное число. Попробуйте снова.\n");
+                while (getchar() != '\n'); //очищаем буфер ввода
+            }
         }
-        fprintf(outputFile, "%lf\n", number);
     }
 
-    fclose(inputFile);
-    fclose(outputFile);
+    fclose(file);
+}
+
+//функция для обработки файла: нахождение минимального и максимального значений и вставка минимального перед первым максимальным
+void transformfile(float *minValue, float *maxValue, int *count) {
+    FILE *file = fopen(FILENAME, "r");
+    if (file == NULL) {
+        printf("Ошибка открытия файла для чтения");
+        exit(-1);
+    }
+
+    float numbers[1000];
+    *minValue = FLT_MAX;
+    *maxValue = -FLT_MAX;
+
+    //считываем числа и находим минимальное и максимальное значения
+    *count = 0; //счетчик считанных чисел
+    while (fscanf(file, "%f", &numbers[*count]) == 1 && *count < 1000) {
+        if (numbers[*count] < *minValue) {
+            *minValue = numbers[*count];
+        }
+        if (numbers[*count] > *maxValue) {
+            *maxValue = numbers[*count];
+        }
+        (*count)++;
+    }
+
+    fclose(file);
+
+    //eсли максимальное значение найдено, вставляем минимальное значение перед ним
+    if (*count > 0) {
+        for (int i = 0; i < *count; i++) {
+            if (numbers[i] == *maxValue && i > 0) { //вставляем перед первым максимальным значением
+                for (int j = *count; j > i; j--) { //сдвигаем элементы вправо
+                    numbers[j] = numbers[j - 1];
+                }
+                numbers[i] = *minValue; //вставляем минимальное значение
+                (*count)++; //увеличиваем счетчик на одно число
+                break;
+            }
+        }
+
+        //записываем обновленные данные обратно в файл
+        file = fopen(FILENAME, "w");
+        if (file == NULL) {
+            printf("Ошибка открытия файла для записи");
+            exit(-1);
+        }
+
+        for (int i = 0; i < *count; i++) {
+            fprintf(file, "%.2f\n", numbers[i]);
+        }
+
+        fclose(file);
+    }
+}
+
+// Функция для вывода результата
+void result(float minValue, float maxValue) {
+    printf("Наименьшее значение: %.2f\n", minValue);
+    printf("Наибольшее значение: %.2f\n", maxValue);
 }
 
 int main() {
-    double minValue, firstMaxValue;
     SetConsoleOutputCP(CP_UTF8);
+
     int count;
-    printf("Введите желаемое количество цифр в файле f.txt:\n");
-    if (scanf("%d", &count)!=1 || count < 2||(int64_t)count) {
-        printf("Введите целое число >= 2.");
+    int choice;
+
+    printf("Выберите способ формирования исходного файла:\n");
+    printf("1 - Случайные числа\n");
+    printf("2 - Ввод пользователем\n");
+
+    if (!(scanf("%d", &choice) == 1 && (choice == 1 || choice == 2))) {
+        printf("Неверный выбор. Выберите 1 или 2.");
         return -1;
     }
-    generate_random_floats(count);
-    // Находим минимальное и первое максимальное значения
-    find_min_and_max(INPUT_FILENAME, &minValue, &firstMaxValue);
 
-    // Записываем результат в выходной файл
-    writeOutputFile(INPUT_FILENAME, OUTPUT_FILENAME, minValue, firstMaxValue);
+    printf("Введите количество элементов в файле: ");
 
-    printf("Обработка завершена. Результат записан в файл %s\n", OUTPUT_FILENAME);
+    if (!(scanf("%d", &count) == 1 && count > 0 && count <= 1000)) {
+        printf("Количество элементов должно быть положительным целым числом и не превышать 1000.\n");
+        return -1;
+    }
 
-    return 0;
+    if (choice == 1) {
+        random_nums_file(count); //создаем файл с случайными числами
+    }
+    if (choice == 2) {
+        user_nums_file(count); //создаем файл с вводом пользователя
+    }
+
+    float minValue, maxValue;
+
+    transformfile(&minValue, &maxValue, &count); // Обрабатываем файл для нахождения мин/макс значений
+
+    result(minValue, maxValue); // Выводим результат
+
+    return 1;
 }
