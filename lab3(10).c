@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <float.h>
+#include <stdint.h>
 #include <time.h>
 #include <windows.h>
 
@@ -50,7 +51,7 @@ void user_nums_file(int count) {
     fclose(file);
 }
 
-//функция для обработки файла: нахождение минимального и максимального значений и вставка минимального перед первым максимальным
+//функция для обработки файла
 void transformfile(float *minValue, float *maxValue, int *count) {
     FILE *file = fopen(FILENAME, "r");
     if (file == NULL) {
@@ -113,23 +114,26 @@ void result(float minValue, float maxValue) {
 int main() {
     SetConsoleOutputCP(CP_UTF8);
 
-    int count;
-    int choice;
+    float count;
+    float choice;
 
     printf("Выберите способ формирования исходного файла:\n");
     printf("1 - Случайные числа\n");
     printf("2 - Ввод пользователем\n");
+    scanf("%f", &choice);
+    int choice_int = (int)choice;
 
-    if (!(scanf("%d", &choice) == 1 && (choice == 1 || choice == 2))) {
+    if (!(choice_int == choice && (choice == 1 || choice == 2))){
         printf("Неверный выбор. Выберите 1 или 2.");
         return -1;
     }
 
     printf("Введите количество элементов в файле: ");
-
-    if (!(scanf("%d", &count) == 1 && count > 0 && count <= 1000)) {
+    scanf("%f", &count);
+    int count_int = (int)count;
+    if (!(count_int == count && count > 0 && count <= 1000)) {
         printf("Количество элементов должно быть положительным целым числом и не превышать 1000.\n");
-        return -1;
+        return 0;
     }
 
     if (choice == 1) {
@@ -141,9 +145,9 @@ int main() {
 
     float minValue, maxValue;
 
-    transformfile(&minValue, &maxValue, &count); // Обрабатываем файл для нахождения мин/макс значений
+    transformfile(&minValue, &maxValue, &count); //обрабатываем файл для нахождения мин/макс значений
 
-    result(minValue, maxValue); // Выводим результат
+    result(minValue, maxValue); //выводим результат
 
     return 1;
 }
