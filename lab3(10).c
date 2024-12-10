@@ -105,7 +105,7 @@ void transformfile(float *minValue, float *maxValue, int *count) {
     }
 }
 
-// Функция для вывода результата
+//функция для вывода результата
 void result(float minValue, float maxValue) {
     printf("Наименьшее значение: %.2f\n", minValue);
     printf("Наибольшее значение: %.2f\n", maxValue);
@@ -132,7 +132,7 @@ int main() {
     scanf("%f", &count);
     int count_int = (int)count;
     if (!(count_int == count && count > 0 && count <= 1000)) {
-        printf("Количество элементов должно быть положительным целым числом и не превышать 1000.\n");
+        printf("Количество элементов должно быть положительным целым числом.\n");
         return 0;
     }
 
