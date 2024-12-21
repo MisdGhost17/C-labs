@@ -107,37 +107,37 @@ build lab2.exe: C_EXECUTABLE_LINKER__lab2_Debug CMakeFiles/lab2.dir/lab2(7).c.ob
   TARGET_PDB = lab2.exe.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target test
+# Object build statements for EXECUTABLE target lab4_12
 
 
 #############################################
-# Order-only phony target for test
+# Order-only phony target for lab4_12
 
-build cmake_object_order_depends_target_test: phony || .
+build cmake_object_order_depends_target_lab4_12: phony || .
 
-build CMakeFiles/test.dir/test.c.obj: C_COMPILER__test_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/test.c || cmake_object_order_depends_target_test
-  DEP_FILE = CMakeFiles\test.dir\test.c.obj.d
+build CMakeFiles/lab4_12.dir/lab4(12).c.obj: C_COMPILER__lab4_12_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/lab4(12).c || cmake_object_order_depends_target_lab4_12
+  DEP_FILE = CMakeFiles\lab4_12.dir\lab4(12).c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\test.dir
-  OBJECT_FILE_DIR = CMakeFiles\test.dir
+  OBJECT_DIR = CMakeFiles\lab4_12.dir
+  OBJECT_FILE_DIR = CMakeFiles\lab4_12.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target test
+# Link build statements for EXECUTABLE target lab4_12
 
 
 #############################################
-# Link the executable test.exe
+# Link the executable lab4_12.exe
 
-build test.exe: C_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/test.c.obj
+build lab4_12.exe: C_EXECUTABLE_LINKER__lab4_12_Debug CMakeFiles/lab4_12.dir/lab4(12).c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_DIR = CMakeFiles\lab4_12.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = test.exe
-  TARGET_IMPLIB = libtest.dll.a
-  TARGET_PDB = test.exe.dbg
+  TARGET_FILE = lab4_12.exe
+  TARGET_IMPLIB = liblab4_12.dll.a
+  TARGET_PDB = lab4_12.exe.dbg
 
 # =============================================================================
 # Object build statements for EXECUTABLE target lab3_10
@@ -204,7 +204,7 @@ build lab2: phony lab2.exe
 
 build lab3_10: phony lab3_10.exe
 
-build test: phony test.exe
+build lab4_12: phony lab4_12.exe
 
 # =============================================================================
 # Folder targets.
@@ -214,7 +214,7 @@ build test: phony test.exe
 #############################################
 # Folder: C:/Users/Misd/CLionProjects/labs_C/cmake-build-debug
 
-build all: phony lab1_3.exe lab2.exe test.exe lab3_10.exe
+build all: phony lab1_3.exe lab2.exe lab4_12.exe lab3_10.exe
 
 # =============================================================================
 # Built-in targets
