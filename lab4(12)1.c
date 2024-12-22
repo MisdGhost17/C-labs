@@ -9,7 +9,7 @@ struct Node {
     struct Node* next;         //указатель на следующий элемент
 };
 
-//функция для создания нового узла
+//функция для создания нового элемента списка
 struct Node* createNode(int degree, int coefficient) {
     struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
     if (newNode == NULL) {
