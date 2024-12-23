@@ -41,6 +41,7 @@ int main(){
         return -1;
     }
     char teststr[400];
+    strcpy(teststr, input);
     int word_count = 0;
     char words[30][11];
     char *token = strtok(teststr, " "); /*создаем строку token (strtok выделяет все содержимое
