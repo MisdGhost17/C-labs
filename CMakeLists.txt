@@ -9,3 +9,4 @@ add_executable(lab4_12 "lab4(12)1.c")
 add_executable(lab3_10 "lab3(10).c")
 add_executable(lab4_12_2 "lab4(12)2.c"
 )
+add_executable(test test.c)
