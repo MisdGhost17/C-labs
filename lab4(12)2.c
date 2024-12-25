@@ -59,7 +59,7 @@ int isValidInput(const char* str) {
 }
 
 //функция для перестановки слов в списке
-Node* rearrangeList(Node* head) {
+Node* changeList(Node* head) {
     Node *vowelFirst = NULL, *vowelLast = NULL;
     Node *consonantFirst = NULL;
 
@@ -165,7 +165,7 @@ int main() {
 
     printList(head);
 
-	head = rearrangeList(head);
+	head = changeList(head);
 
 	printf("Переставленный список:\n");
 
