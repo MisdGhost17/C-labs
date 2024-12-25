@@ -99,10 +99,10 @@ int main() {
     struct Node* polynomial2 = NULL;
 
    //создание первого многочлена L1
-   printf("Введите количество членов первого многочлена L1: ");
-   int termsCount1;
+    printf("Введите количество членов первого многочлена L1: ");
+    float termsCount1;
 
-   while (scanf("%d", &termsCount1) != 1 || termsCount1 <= 0) {
+   while (scanf("%fl", &termsCount1) != 1 || termsCount1 <= 0 || termsCount1 != (int)termsCount1) {
        fprintf(stderr, "Ошибка ввода. Введите положительное целое число: ");
        while (getchar() != '\n'); //очистка буфера ввода
    }
@@ -111,9 +111,8 @@ int main() {
        int degree, coefficient;
        printf("Введите степень и коэффициент для L1 (например: 2 3): ");
        while (scanf("%d %d", &degree, &coefficient) != 2 || coefficient == 0 || degree < 0) {
-           fprintf(stderr, "Некорректный ввод. Убедитесь, что степень не отрицательная и коэффициент не равен нулю.\n");
+           fprintf(stderr, "Некорректный ввод. Убедитесь, что степень не отрицательная и коэффициент не равен нулю:\n");
            while (getchar() != '\n'); //очистка буфера ввода
-           printf("Введите степень и коэффициент: ");
        }
 
        addTerm(&polynomial1, degree, coefficient);
@@ -121,9 +120,9 @@ int main() {
 
    //создание второго многочлена L2
    printf("Введите количество членов второго многочлена L2: ");
-   int termsCount2;
+   float termsCount2;
 
-   while (scanf("%d", &termsCount2) != 1 || termsCount2 <= 0) {
+   while (scanf("%fl", &termsCount2) != 1 || termsCount2 <= 0 || termsCount2 != (int)termsCount2) {
        fprintf(stderr, "Ошибка ввода. Введите положительное целое число: ");
        while (getchar() != '\n'); //очистка буфера ввода
    }
@@ -133,9 +132,8 @@ int main() {
 
        printf("Введите степень и коэффициент для L2 (например: 2 -5): ");
        while (scanf("%d %d", &degree, &coefficient) != 2 || coefficient == 0 || degree < 0) {
-           fprintf(stderr, "Некорректный ввод. Убедитесь, что степень не отрицательная и коэффициент не равен нулю.\n");
+           fprintf(stderr, "Некорректный ввод. Убедитесь, что степень не отрицательная и коэффициент не равен нулю:\n");
            while (getchar() != '\n'); //очистка буфера ввода
-           printf("Введите степень и коэффициент: ");
        }
 
        addTerm(&polynomial2, degree, coefficient);
