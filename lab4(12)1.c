@@ -24,7 +24,7 @@ struct Node* createNode(int degree, int coefficient) {
 }
 
 //функция для добавления элемента в список
-void addTerm(struct Node** head, int degree, int coefficient) {
+void addTerm(struct Node* *head, int degree, int coefficient) {
     struct Node* current = *head;
     while (current != NULL) {
         //суммируем коэффициенты если вводимая степень уже встречалась
@@ -97,7 +97,6 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     struct Node* polynomial1 = NULL;
     struct Node* polynomial2 = NULL;
-
    //создание первого многочлена L1
     printf("Введите количество членов первого многочлена L1: ");
     float termsCount1;

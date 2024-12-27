@@ -5,11 +5,11 @@
 #include <time.h>
 #include <windows.h>
 
-#define FILENAME "C:/Users/Misd/CLionProjects/labs_C/f.txt"
+#define FILENAME "C:/Users/Misd/CLionProjects/labs_C/f.bin"
 
 //функция для формирования файла с случайными числами
 void random_nums_file(int count) {
-    srand((unsigned int)time(NULL)); //инициализация генератора случайных чисел
+    srand(time(NULL)); //инициализация генератора случайных чисел
     FILE *file = fopen(FILENAME, "w");
     if (file == NULL) {
         printf("Ошибка открытия файла для записи");

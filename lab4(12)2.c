@@ -24,7 +24,7 @@ Node* createNode(const char* word) {
 }
 
 //функция для добавления элемента в конец списка
-void appendNode(Node** head, const char* word) {
+void appendNode(Node* *head, const char* word) {
     Node* newNode = createNode(word);
     if (*head == NULL) {
         *head = newNode;
@@ -141,7 +141,9 @@ int main() {
 
     //заменяем точку на символ завершения строки
     char *ptr = strchr(input, '.');
-    if (ptr != NULL) *ptr = '\0';
+    if (ptr != NULL) {
+        *ptr = '\0';
+    }
 
 
 	//проверка на допустимые символы
@@ -173,6 +175,5 @@ int main() {
 
 	//освобождение памяти
 	freeList(head);
-
 	return 0;
 }
