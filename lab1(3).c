@@ -10,9 +10,6 @@ double calculate_with_max_n(int n, double x);
 //Проверка валидно ли double float число(не целое число, значение с плавающей точкой)
 bool isValidDoubleNumber(double num);
 
-int is_integer(double num) {
-    return floor(num) == num;
-}
 
 int main(){
     // меняем кодировку, чтобы отображался русский язык в консоли
@@ -43,7 +40,7 @@ int main(){
             double e; //переменная для точности
             printf("Введите точность:\n");
             scanf("%lf", &e); //получаем точность и проверяем её на валидность
-            if (e <= 0 ||!is_integer(e) ||!isValidDoubleNumber(e)) {
+            if (e <= 0 ||!isValidDoubleNumber(e)) {
                 printf("Неверный ввод точности.");
                 return 1;
             }

@@ -206,37 +206,70 @@ build lab4_12_2.exe: C_EXECUTABLE_LINKER__lab4_12_2_Debug CMakeFiles/lab4_12_2.d
   TARGET_PDB = lab4_12_2.exe.dbg
 
 # =============================================================================
-# Object build statements for EXECUTABLE target test
+# Object build statements for EXECUTABLE target dlab7
 
 
 #############################################
-# Order-only phony target for test
+# Order-only phony target for dlab7
 
-build cmake_object_order_depends_target_test: phony || .
+build cmake_object_order_depends_target_dlab7: phony || .
 
-build CMakeFiles/test.dir/test.c.obj: C_COMPILER__test_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/test.c || cmake_object_order_depends_target_test
-  DEP_FILE = CMakeFiles\test.dir\test.c.obj.d
+build CMakeFiles/dlab7.dir/daneklab7.c.obj: C_COMPILER__dlab7_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/daneklab7.c || cmake_object_order_depends_target_dlab7
+  DEP_FILE = CMakeFiles\dlab7.dir\daneklab7.c.obj.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\test.dir
-  OBJECT_FILE_DIR = CMakeFiles\test.dir
+  OBJECT_DIR = CMakeFiles\dlab7.dir
+  OBJECT_FILE_DIR = CMakeFiles\dlab7.dir
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target test
+# Link build statements for EXECUTABLE target dlab7
 
 
 #############################################
-# Link the executable test.exe
+# Link the executable dlab7.exe
 
-build test.exe: C_EXECUTABLE_LINKER__test_Debug CMakeFiles/test.dir/test.c.obj
+build dlab7.exe: C_EXECUTABLE_LINKER__dlab7_Debug CMakeFiles/dlab7.dir/daneklab7.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
-  OBJECT_DIR = CMakeFiles\test.dir
+  OBJECT_DIR = CMakeFiles\dlab7.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_FILE = test.exe
-  TARGET_IMPLIB = libtest.dll.a
-  TARGET_PDB = test.exe.dbg
+  TARGET_FILE = dlab7.exe
+  TARGET_IMPLIB = libdlab7.dll.a
+  TARGET_PDB = dlab7.exe.dbg
+
+# =============================================================================
+# Object build statements for EXECUTABLE target dlab3
+
+
+#############################################
+# Order-only phony target for dlab3
+
+build cmake_object_order_depends_target_dlab3: phony || .
+
+build CMakeFiles/dlab3.dir/daneklab3.c.obj: C_COMPILER__dlab3_unscanned_Debug C$:/Users/Misd/CLionProjects/labs_C/daneklab3.c || cmake_object_order_depends_target_dlab3
+  DEP_FILE = CMakeFiles\dlab3.dir\daneklab3.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\dlab3.dir
+  OBJECT_FILE_DIR = CMakeFiles\dlab3.dir
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target dlab3
+
+
+#############################################
+# Link the executable dlab3.exe
+
+build dlab3.exe: C_EXECUTABLE_LINKER__dlab3_Debug CMakeFiles/dlab3.dir/daneklab3.c.obj
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\dlab3.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = dlab3.exe
+  TARGET_IMPLIB = libdlab3.dll.a
+  TARGET_PDB = dlab3.exe.dbg
 
 
 #############################################
@@ -264,6 +297,10 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 # =============================================================================
 # Target aliases.
 
+build dlab3: phony dlab3.exe
+
+build dlab7: phony dlab7.exe
+
 build lab1_3: phony lab1_3.exe
 
 build lab2: phony lab2.exe
@@ -274,8 +311,6 @@ build lab4_12: phony lab4_12.exe
 
 build lab4_12_2: phony lab4_12_2.exe
 
-build test: phony test.exe
-
 # =============================================================================
 # Folder targets.
 
@@ -284,7 +319,7 @@ build test: phony test.exe
 #############################################
 # Folder: C:/Users/Misd/CLionProjects/labs_C/cmake-build-debug
 
-build all: phony lab1_3.exe lab2.exe lab4_12.exe lab3_10.exe lab4_12_2.exe test.exe
+build all: phony lab1_3.exe lab2.exe lab4_12.exe lab3_10.exe lab4_12_2.exe dlab7.exe dlab3.exe
 
 # =============================================================================
 # Built-in targets

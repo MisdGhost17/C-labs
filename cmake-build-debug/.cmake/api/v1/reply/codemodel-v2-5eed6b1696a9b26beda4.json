@@ -20,7 +20,8 @@
 						2,
 						3,
 						4,
-						5
+						5,
+						6
 					]
 				}
 			],
@@ -40,12 +41,27 @@
 						2,
 						3,
 						4,
-						5
+						5,
+						6
 					]
 				}
 			],
 			"targets" : 
 			[
+				{
+					"directoryIndex" : 0,
+					"id" : "dlab3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dlab3-Debug-5e672d05ba135d4e9073.json",
+					"name" : "dlab3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "dlab7::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-dlab7-Debug-173545aa3b521ffe6515.json",
+					"name" : "dlab7",
+					"projectIndex" : 0
+				},
 				{
 					"directoryIndex" : 0,
 					"id" : "lab1_3::@6890427a1f51a3e7e1df",
@@ -79,13 +95,6 @@
 					"id" : "lab4_12_2::@6890427a1f51a3e7e1df",
 					"jsonFile" : "target-lab4_12_2-Debug-9cc4389a4c3ffb5e578d.json",
 					"name" : "lab4_12_2",
-					"projectIndex" : 0
-				},
-				{
-					"directoryIndex" : 0,
-					"id" : "test::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-test-Debug-0dfecd9bd899a107fcb8.json",
-					"name" : "test",
 					"projectIndex" : 0
 				}
 			]
